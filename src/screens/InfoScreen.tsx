@@ -1,9 +1,10 @@
-import { View, Text, Modal, Button, TextInput, Image, TouchableOpacity, ScrollView, Alert, } from 'react-native';
+import { View, Text, Modal,  TextInput, Image, TouchableOpacity, ScrollView, Alert, } from 'react-native';
 import { ChatProp, InfoScreenRouteProp, MessageProp } from '../types';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import { main } from '../styles';
 import React, { useState } from 'react';
 import { getOneAnswer, storeAnswer } from '../utils/async-storage';
+import { Button, WhiteSpace } from '@ant-design/react-native';
 
 const InfoScreen = () => {
   const spec = useRoute<InfoScreenRouteProp>();
@@ -54,22 +55,32 @@ const InfoScreen = () => {
         <Image style = {{borderRadius:100, marginVertical:20}} width={150} height={150} source={{uri:spec.params.photo}}/>
         <Text style = {main .subtitleGray}>Опыт: {spec.params.exp} лет</Text>
       </View>
-
-      <Text style = {main .subtitle}>Образование: {spec.params.education} </Text>
+      
+      <View style = {main.devider}></View>
+      <Text style = {main.subtitle}>Образование</Text>
+      <Text style = {main.subtitleGray}>{spec.params.education}</Text>
+      <WhiteSpace size='xl'/>
+      <Text style = {main .subtitle}>Обо мне</Text>
+      <Text style = {main.subtitleGray}>{spec.params.desc}</Text>
 
 
       {/* send */}
-      <Button onPress={() => setModalVisible(true)} title="Задать вопрос" />
+      <Button type='primary' style = {{borderRadius:15, marginVertical:20}} onPress={() => setModalVisible(true)}>
+        Задать вопрос
+      </Button>
       {/* modal */}
       <Modal visible={modalVisible}>
         <View style={main.centeredView}>
           <View style={main.modalView}>
-            <Text onPress={() => setModalVisible(false)}>Закрыть</Text>
+            <Text style={main.subtitle} onPress={() => setModalVisible(false)}>Закрыть</Text>
+            <WhiteSpace size='xl'/>
             <Text style={main.subtitle}>Тема обращения</Text>
             <TextInput placeholder="Секс" value={theme} onChangeText={(e) => setTheme(e)} style={main.textInput} />
+            <WhiteSpace size='xl'/>
             <Text style={main.subtitle}>Текст обращения</Text>
             <TextInput multiline placeholder="Пишите здесь..." value={text} onChangeText={(e) => setText(e)} style={main.textInput} />
-            <Button onPress={send} title="Отправить" />
+            <WhiteSpace size='xl'/>
+            <Button style = {{borderRadius:15}} type='primary' onPress={send}>Отправить</Button>
           </View>
         </View>
       </Modal>

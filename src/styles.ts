@@ -4,7 +4,7 @@ export const main = StyleSheet.create({
   title: {
     fontSize: 25,
     color: 'black',
-    textAlign:'center'
+    textAlign:'center',
   },
   subtitle: {
     marginHorizontal: 20,
@@ -37,14 +37,21 @@ export const main = StyleSheet.create({
     elevation: 5,
   },
   textInput: {
-    backgroundColor: 'gray',
+    backgroundColor: '#c1caca',
     borderRadius:15,
-    width:200,
+    width:300,
+    textAlign:'center',
   },
   container: {
     margin: 20,
     color:'black',
   },
+  devider: {
+    borderTopColor:'black',
+    borderStyle:'solid',
+    borderWidth:1,
+    marginVertical:20,
+  }
 });
 
 export const specialistStyle = StyleSheet.create({
@@ -52,11 +59,11 @@ export const specialistStyle = StyleSheet.create({
     borderRadius:10,
     backgroundColor:'#AFDAFC',
     marginHorizontal:20,
-    marginVertical:5,
+    marginVertical:15,
   },
   avatar: {
-    width: 50,
-    height:50,
+    width: 65,
+    height:65,
     borderRadius:100,
     marginRight:5,
   },
@@ -65,8 +72,9 @@ export const specialistStyle = StyleSheet.create({
     fontSize: 15,
   },
   content: {
-    padding: 5,
+    padding: 10,
     flexDirection:'row',
+    alignItems:'center',
   },
 });
 
@@ -94,8 +102,10 @@ export const messageStyle = StyleSheet.create({
     textAlign: 'right',
   },
   write: {
-    
-  }
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
 });
+
 
 

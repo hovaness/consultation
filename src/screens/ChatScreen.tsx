@@ -1,17 +1,16 @@
-import { View, Text, Button, TextInput, Image, TouchableOpacity, ScrollView } from 'react-native';
+import { View, Text,  TextInput, Image, TouchableOpacity, ScrollView } from 'react-native';
 import React, { useEffect, useState } from 'react';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import {  ChatScreenRouteProp, MessageProp } from '../types';
-import { storeHistory } from '../utils/async-storage';
 import { main, messageStyle } from '../styles';
-import { useAsyncStorage } from '@react-native-async-storage/async-storage';
+import { Button } from '@ant-design/react-native';
+import  Icon  from 'react-native-vector-icons/AntDesign';
 
 const ChatScreen = () => {
   const chat = useRoute<ChatScreenRouteProp>();
   const [history, setHistory] = useState<MessageProp[]>([]);
   const [text, setText] = useState('');
   const backNavigation = useNavigation();
-  const {setItem} = useAsyncStorage(`${chat.params.theme}:${chat.params.specialist.name}`);
 
   useEffect(() => {
     console.log(chat.params.history);
@@ -54,9 +53,13 @@ const ChatScreen = () => {
           </View>
         </>
       ))}
-      <View>
-        <TextInput multiline placeholder="Пишите здесь..." value={text} onChangeText={(e) => setText(e)} style={main.textInput} />
-        <Button onPress={addMessage} title="Спросить еще" />
+
+      <View style = {messageStyle.write}>
+        <TextInput multiline placeholder="Текст сообщения" value={text} onChangeText={(e) => setText(e)} style={main.textInput} />
+        <Button style = {{borderColor:'black'}} type='ghost' onPress={addMessage}>
+          <Icon name="caretright" size={24} color="black"/>
+          {/* <Image width={24} height={24} source={{uri:'https://cdn4.iconfinder.com/data/icons/glyphs/24/icons_send-1024.png'}}/> */}
+        </Button>
       </View>
 
     </ScrollView>
